@@ -1,10 +1,12 @@
 version: 0.0
 os: linux
 files:
-  - source: /   # Source location in the deployment package
-    destination: /var/www/html   # Destination on the instance
+  - source: /
+    destination: /var/www/html
 hooks:
   AfterInstall:
-    - location: scripts/deploy.sh
+    - location: scripts/install_dependencies.sh
       timeout: 300
-      runas: root
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 300
